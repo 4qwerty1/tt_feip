@@ -1,0 +1,59 @@
+{% extends '@layouts/base.twig' %}
+
+{% set scope = {
+    slides: [
+        {
+            desktopImage: 'images/slides/slide-desktop.png' | asset,
+            mobileImage: 'images/slides/slide-mobile.png' | asset,
+            title: 'Проектируем и строим загородные дома',
+            text: 'Какой-то текст для 1й картинки',
+        },
+        {
+            desktopImage: 'images/slides/slide-desktop.png' | asset,
+            mobileImage: 'images/slides/slide-mobile.png' | asset,
+            title: '2я картинка',
+            text: 'Какой-то текст для 2й картинки',
+
+        },
+        {
+            desktopImage: 'images/slides/slide-desktop.png' | asset,
+            mobileImage: 'images/slides/slide-mobile.png' | asset,
+            title: '3я картинка',
+            text: 'Какой-то текст для 3й картинки',
+        },
+    ],
+    featuredSection: {
+        title: 'Каждый проект<br>для нас — важный',
+        text: 'Мы строительная компания полного цикла.',
+        items: [
+            {
+                icon: 'icons/house-green.svg'|asset,
+                title: '57 домов',
+                text: 'спроектировали и построили “под ключ”',
+            },
+            {
+                icon: 'icons/calendar-green.svg'|asset,
+                title: '14 лет',
+                text: 'мы на рынке загородного строительства',
+            },
+        ],
+    },
+} %}
+
+{% block main %}
+    <div class="Container">
+        <div class="Layout__section Layout__section--slider">
+            {% include '@components/slider/slider.twig' with {
+                items: scope.slides,
+            } %}
+        </div>
+
+        <div class="Layout__section Layout__section--featured">
+            {% include '@components/featured-section/featured-section.twig' with {
+                title: scope.featuredSection.title,
+                text: scope.featuredSection.text,
+                items: scope.featuredSection.items,
+            } %}
+        </div>
+    </div>
+{% endblock %}
